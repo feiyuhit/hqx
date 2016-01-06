@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <title>index</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -46,30 +46,77 @@ div {
 }
 </style>
 <body>
-    <div id="container">
+    <div id="code">
     	<p>别着急，我一个一个字出来</p>
     	<p>猜猜我的名字</p>
     	<p>提示一下，嗯嗯嗯，就不告诉你</p>
     </div>
 </body>
-<script type="text/javascript">
-$("p")
-  // Blast the text apart by letter.
-  .blast({ delimiter: "letter" })
-  // Slide the letters into view
-  .velocity("transition.shrinkIn",
-             { 
-               display: null,
-               stagger: 35,
-               duration: 500,
-               complete: function() {
-                 // Reverse blast
-                 $("p").blast(false);
-               } 
-             }
-  );
-</script>
+
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery.blast.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/0.11.6/jquery.velocity.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/0.11.6/velocity.ui.js'></script>
+<script type="text/javascript">
+$(function(){
+	// $("p")
+	//   .blast({ delimiter: "letter" })
+	//   .velocity("transition.shrinkIn",
+	//      { 
+	//        display: null,
+	//        stagger: 35,
+	//        duration: 500,
+	//        complete: function() {
+	//          // Reverse blast
+	//          $("p").blast(false);
+	//        } 
+	//      }
+	//   );
 
+});
+  var $chars = $("#code").blast({ delimiter: "character" });
+  $chars.css("display", "none");
+  play($chars);
+            function play($chars) {
+                var total = $chars.length;
+                function _display(i) {
+                    if(i === total) {
+                        return;
+                    }
+                    var $curBlock = $($chars[i]).closest("[block-id]");
+                    var blockId = $curBlock.attr("block-id");
+                    if(blockId && blockId != prevBlockId) {
+                        prevBlockId = blockId;
+                        var delay = $curBlock.attr("delay") ? parseInt($curBlock.attr("delay")) : DEFAULT_DELAY;
+                        setTimeout(function() {
+                            _display(i);
+                        }, delay);
+                        return;
+                    }
+                    $($chars[i]).css("display", "inline-block");
+
+                    // var scrollTop = content.scrollHeight - content.clientHeight;
+                    // if(scrollTop > 0) {
+                    //     $content.scrollTop(scrollTop);
+                    // }
+
+                    var val = Math.floor(i / total * 100);
+                    // $progressBar.attr("value", val);
+                    // $progressVal.text(val);
+
+                    var speed = $curBlock.attr("speed") ? parseInt($curBlock.attr("speed")) : DEFAULT_SPEED;
+                    if(speed === 0) {
+                        _display(i + 1);
+                    } else {
+                        setTimeout(function() {
+                            _display(i+1);
+                        }, speed);
+                    }
+                }
+                _display(0);
+            }
+
+
+
+</script>
 </html>
