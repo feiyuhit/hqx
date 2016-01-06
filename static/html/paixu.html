@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>Examples</title>
+<style type="text/css">
+body{background-color: #fff; font-family: 'Î¢ÈíÑÅºÚ'}
+	*{margin: 0;padding: 0}
+	.letter{position: fixed;right: 200px;top: 50px;width: 50px;height: auto; background-color: #fff;}
+	.letter span{ display: block; width: 50px; padding:2px 0;text-align: center;line-height: 22px; font-size: .75em; position: relative; color: #333}
+	.letter span.active{
+		font-weight: bold;
+	}
+</style>
+</head>
+<body>
+    <div class="letter" id="letter">
+    	<span>A</span>
+    	<span>B</span>
+    	<span>C</span>
+    	<span>D</span>
+    	<span>E</span>
+    	<span>F</span>
+    	<span>G</span>
+    	<span>H</span>
+    	<span>I</span>
+    	<span>J</span>
+    	<span>K</span>
+    	<span>L</span>
+    	<span>M</span>
+    	<span>N</span>
+    </div>
+</body>
+<script>
+window.onload = function(){
+	document.onmousemove = function(ev){
+		var oEvent=ev||event;
+		var oLetter = document.getElementById('letter');
+		var aSpan = oLetter.getElementsByTagName('span');
+		var d = 0;
+		var iMax=100;
+		var i = 0;
+
+		function getDis(obj){
+			return Math.sqrt
+			(
+				Math.pow(obj.offsetLeft+oLetter.offsetLeft-oEvent.clientX+obj.offsetWidth/2, 2)+
+				Math.pow(obj.offsetTop+oLetter.offsetTop-oEvent.clientY+obj.offsetHeight/2, 2)
+			);
+		}
+		var min = 100, mspan = aSpan[0];
+		for(i = 0;i<aSpan.length;i++){
+			d = getDis(aSpan[i]);
+			d = Math.min(d,iMax);
+			if(d < min ) {
+				min = d;
+				mspan = aSpan[i];
+			}
+			aSpan[i].className = '';
+			aSpan[i].style.fontSize=((iMax-d)/iMax)*15+12 + 'px';
+			aSpan[i].style.left=-Math.round(((iMax-d)/iMax)*70 )+ 'px';
+			
+			if(aSpan[i].style.left == 0+'px'){
+				aSpan[i].style.opacity = 1 ;
+			}
+			else{
+				aSpan[i].style.opacity = (iMax-d)/iMax*1 +0.3 ;
+			}
+			
+		}
+		if(mspan.style.fontSize != '12px') {
+			mspan.className = "active";
+		}
+		
+		
+	}
+}
+</script>
+
+
+
+</html>
