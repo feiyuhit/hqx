@@ -8,7 +8,68 @@
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
 </head>
+<style type="text/css">
+body {
+  font-family: "Helvetica Neue", Helvetica;
+  width: 90%;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin: 25px auto 0 auto;
+  background: rgb(234, 235, 235);
+  color: rgb(25, 25, 25);
+}
+
+div,
+p {
+  margin: 0 auto;
+}
+
+p {
+  color: rgb(125, 125, 125);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 17px;
+}
+
+div {
+  width: 50%;
+}
+
+.blast {
+  display: inline-block;
+  color: red;
+  opacity: 0;
+}
+
+.blast:nth-child(odd) {
+  color: blue;
+}
+</style>
 <body>
-    <div id="app"></div>
+    <div id="container">
+    	<p>别着急，我一个一个字出来</p>
+    	<p>猜猜我的名字</p>
+    	<p>提示一下，嗯嗯嗯，就不告诉你</p>
+    </div>
 </body>
+<script type="text/javascript">
+$("p")
+  // Blast the text apart by letter.
+  .blast({ delimiter: "letter" })
+  // Slide the letters into view
+  .velocity("transition.shrinkIn",
+             { 
+               display: null,
+               stagger: 35,
+               duration: 500,
+               complete: function() {
+                 // Reverse blast
+                 $("p").blast(false);
+               } 
+             }
+  );
+</script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.blast.min.js"></script>
+
 </html>
