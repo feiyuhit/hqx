@@ -9,114 +9,96 @@
 <link href="" rel="stylesheet">
 </head>
 <style type="text/css">
-body {
-  font-family: "Helvetica Neue", Helvetica;
-  width: 90%;
-  font-weight: 200;
-  letter-spacing: 1px;
-  margin: 25px auto 0 auto;
-  background: rgb(234, 235, 235);
-  color: rgb(25, 25, 25);
+.content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
 }
-
 div,
 p {
   margin: 0 auto;
 }
 
-p {
-  color: rgb(125, 125, 125);
-  font-size: 0.85rem;
-  text-align: center;
-  margin-bottom: 17px;
-}
-
-div {
-  width: 50%;
-}
-
 .blast {
   display: inline-block;
-  color: red;
-  opacity: 0;
+  opacity: 1;
+  display: none;
 }
-
-.blast:nth-child(odd) {
-  color: blue;
+body{
+    background-color: #333;
+    color: #f2f2f2;
+}
+.pink {
+    color: pink;
+}
+.padding54{
+    padding-left: 54px;
 }
 </style>
 <body>
-    <div id="code">
-    	<p>别着急，我一个一个字出来</p>
-    	<p>猜猜我的名字</p>
-    	<p>提示一下，嗯嗯嗯，就不告诉你</p>
+<!-- page1 -->
+<div class="page1" id="page1">
+    <div class="content" id="content">
+        <div class="code" id="code">
+            <div  class="" block-id="1" speed="50"  delay="2000"><span class="pink padding54">hello sasa</span> I am  hongqiuxia 第一行内容第一行内容第一行内容<span >第一行内容第一行内容第一行内容第一行</span>内容第一行内容第一行内容第一行内容第一行内容第一行内容第一行内容第一行内容第一行内容第一行内容第一行内容第一行内容第一行内容</div>
+            <div class="padding54" block-id="2" speed="20" delay="2000"><span class="pink padding54">hello sasa</span> I am  hongqiuxia 二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二二</div>
+            <div class="padding54" block-id="3" speed="60" delay="2000"><span class="pink padding54">hello sasa</span> I am  hongqiuxia 三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三三</div>
+        </div>
     </div>
+    <!-- #进度条 -->
+    <!-- #弹层 -->
+</div>
+<!-- /page1 -->
 </body>
 
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery.blast.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/0.11.6/jquery.velocity.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/0.11.6/velocity.ui.js'></script>
 <script type="text/javascript">
 $(function(){
-	// $("p")
-	//   .blast({ delimiter: "letter" })
-	//   .velocity("transition.shrinkIn",
-	//      { 
-	//        display: null,
-	//        stagger: 35,
-	//        duration: 500,
-	//        complete: function() {
-	//          // Reverse blast
-	//          $("p").blast(false);
-	//        } 
-	//      }
-	//   );
+    var $content = $("#content");
+    var $code = $("#code");
+    var $chars = $code.blast({delimiter:"character"}); 
+    var prevBlockId = 0;
+    var defaultSpeed = 30;   //每个字出现的速度30ms
+    var defaultDelay = 200; //延迟200ms
+    $chars.css("display","none");
+    play($chars); //调用play方法
+    function play($chars){
+        var total = $chars.length;
 
-});
-  var $chars = $("#code").blast({ delimiter: "character" });
-  $chars.css("display", "none");
-  play($chars);
-            function play($chars) {
-                var total = $chars.length;
-                function _display(i) {
-                    if(i === total) {
-                        return;
-                    }
-                    var $curBlock = $($chars[i]).closest("[block-id]");
-                    var blockId = $curBlock.attr("block-id");
-                    if(blockId && blockId != prevBlockId) {
-                        prevBlockId = blockId;
-                        var delay = $curBlock.attr("delay") ? parseInt($curBlock.attr("delay")) : DEFAULT_DELAY;
-                        setTimeout(function() {
-                            _display(i);
-                        }, delay);
-                        return;
-                    }
-                    $($chars[i]).css("display", "inline-block");
-
-                    // var scrollTop = content.scrollHeight - content.clientHeight;
-                    // if(scrollTop > 0) {
-                    //     $content.scrollTop(scrollTop);
-                    // }
-
-                    var val = Math.floor(i / total * 100);
-                    // $progressBar.attr("value", val);
-                    // $progressVal.text(val);
-
-                    var speed = $curBlock.attr("speed") ? parseInt($curBlock.attr("speed")) : DEFAULT_SPEED;
-                    if(speed === 0) {
-                        _display(i + 1);
-                    } else {
-                        setTimeout(function() {
-                            _display(i+1);
-                        }, speed);
-                    }
-                }
-                _display(0);
+        function _display(i){
+            if(i==total){
+                return;
             }
-
-
-
+            var $curBlock = $($chars[i]).closest("[block-id]");
+           $curBlock.attr("aaaaaaa");
+            var blockId = $curBlock.attr("block-id");
+            if(blockId && blockId != prevBlockId ){
+                prevBlockId = blockId;
+                var delay = $curBlock.attr("delay") ? parseInt($curBlock.attr("delay")) : defaultDelay;
+                setTimeout(function(){
+                    _display(i);
+                },delay);
+                return;
+            }
+            $($chars[i]).css("display","inline-block");
+            var scrollTop = $content.scrollTop - $content.clientHeight;
+            if(scrollTop>0){
+                $content.scrollTop(scrollTop);
+            }
+            var speed  = $curBlock.attr("speed") ? parseInt($curBlock.attr("speed")) : defaultSpeed;
+            if(speed === 0){
+                _display(i+1);
+            }else{
+                setTimeout(function(){
+                    _display(i+1);
+                },speed);
+            }
+        }
+        _display(0);
+    }
+});
 </script>
 </html>
