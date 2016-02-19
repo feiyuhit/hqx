@@ -12,9 +12,9 @@
 html,body{ height: 100%; width: 100%; overflow: hidden;}
 body{background-color: #fff; font-family: '微软雅黑'}
 	*{margin: 0;padding: 0}
-	.letter{position: fixed;right: 0px;top: 20px;width: 20px;height: auto; background-color: #fff;}
-	.letter span{ display: block; width: 20px; padding:2px 0;text-align: center;line-height: 22px; font-size: .75em; position: relative; color: #333; font-size: 12px;left: 0;}
-	.letter span.active{
+	#letter{position: fixed;right: 0px;top: 20px;width: 20px;height: auto; background-color: #fff;}
+	#letter div{ display: block; width: 20px; padding:2px 0;text-align: center;line-height: 22px; font-size: .75em; position: relative; color: #333; font-size: 12px;left: 0;}
+	#letter div.active{
 		font-weight: bolder;
 		font-size: 32px!important;
 		margin: -12px 0;
@@ -22,110 +22,146 @@ body{background-color: #fff; font-family: '微软雅黑'}
 </style>
 </head>
 <body>
-
+<div class="filter-index">
 	<div class="letter" id="letter">
-    	<span>A</span>
-    	<span>B</span>
-    	<span>C</span>
-    	<span>D</span>
-    	<span>E</span>
-    	<span>F</span>
-    	<span>G</span>
-    	<span>H</span>
-    	<span>I</span>
-    	<span>J</span>
-    	<span>K</span>
-    	<span>L</span>
-    	<span>M</span>
-    	<span>N</span>
+    	<div class="index-item">A</div>
+        <div class="index-item">B</div>
+        <div class="index-item">C</div>
+        <div class="index-item">D</div>
+        <div class="index-item">F</div>
+        <div class="index-item">G</div>
+        <div class="index-item">J</div>
+        <div class="index-item">K</div>
+        <div class="index-item">L</div>
+        <div class="index-item">M</div>
+        <div class="index-item">N</div>
+        <div class="index-item">Q</div>
+        <div class="index-item">R</div>
+        <div class="index-item">S</div>
+        <div class="index-item">W</div>
+        <div class="index-item">X</div>
+        <div class="index-item">Y</div>
     </div>
 
-
+</div>
 <script>
 window.onload=function(){
     function letterMove(){
-	    var addHandler = function(element, type, handler){
-			if(element.addEventListener){
-				element.addEventListener(type, handler, false);
-			}else if (element.attachEvent){
-				element.attachEvent("on" + type, handler);
-			}else {
-				element["on" + type] = handler;
-			}
-		}
+        var addHandler = function(element, type, handler){
+            if(element.addEventListener){
+                element.addEventListener(type, handler, false);
+            }else if (element.attachEvent){
+                element.attachEvent("on" + type, handler);
+            }else {
+                element["on" + type] = handler;
+            }
+        }
 
-		var oLetter = document.getElementById('letter');
-		var aSpan = oLetter.getElementsByTagName('span');
-		var d = 0;
-		var iMax=100;
-		var i = 0;
-
-		var move = 'ontouchmove' in document ? 'touchmove' : 'mousemove' ;
-		addHandler(document,move,function(e){
-			
-			var ev = 'ontouchmove' in document ? e.touches[0] : e ;
-			var x = ev.pageX ;
-			var y = ev.pageY ;
-			function getDis(obj){
-				return Math.sqrt
-				(
-					Math.pow(obj.offsetLeft+oLetter.offsetLeft-x+obj.offsetWidth/2, 2)+
-					Math.pow(obj.offsetTop+oLetter.offsetTop-y+obj.offsetHeight/2, 2)
-				);
-			}
-			var min = 100, mspan = aSpan[0];
-			for(i = 0;i<aSpan.length;i++){
-				d = getDis(aSpan[i]);
-				d = Math.min(d,iMax);
-				if(d < min ) {
-					min = d;
-					mspan = aSpan[i];
-				}
-				aSpan[i].className = '';
-				aSpan[i].style.fontSize=((iMax-d)/iMax)*15+12 + 'px';
-				aSpan[i].style.left=-Math.round(((iMax-d)/iMax)*70 )+ 'px';
-				
-				if(aSpan[i].style.left == 0+'px'){
-					aSpan[i].style.opacity = 1 ;
-				}
-				else{
-					aSpan[i].style.opacity = (iMax-d-0.5)/iMax*1 +0.2 ;
-				}
-				
-			}
-			if(mspan.style.fontSize != '12px') {
-				mspan.className = "active";
-			}
-		});
-
-		var end = 'ontouchend' in document ? 'touchend' : 'mouseleave' ;
-
-		// addHandler(document,end,function(e){
-		// 	var ev = 'ontouchend' in document ? e.touches[0] : e ;
-		// });
+        var oLetter = document.getElementById('letter');
+        var aSpan = oLetter.getElementsByTagName('div');
+        var d = 0;
+        var iMax=100;
+        var i = 0;
 
 
-		addHandler(document,end,function(e){
 
-			//解绑事件
-			var ev = 'ontouchend' in document ? e.touches[0] : e ;
-            this.removeEventListener('touchmove',this,false);
+        // ontouchstart
+        var starts = 'ontouchstart' in document ? 'touchstart' : 'click' ;
+        addHandler(document,starts,function(e){
+            var ev = 'ontouchstart' in document ? e.touches[0] : e ;
+            var x = ev.pageX ;
+            var y = ev.pageY ;
+            function getDis(obj){
+                return Math.sqrt
+                (
+                    Math.pow(obj.offsetLeft+oLetter.offsetLeft-x+obj.offsetWidth/2, 2)+
+                    Math.pow(obj.offsetTop+oLetter.offsetTop-y+obj.offsetHeight/2, 2)
+                );
+            }
 
-            this.removeEventListener('touchend',this,false);
-
-
+            var min = 100, mspan = aSpan[0];
             for(i = 0;i<aSpan.length;i++){
-				aSpan[i].className = '';
-				aSpan[i].style.fontSize=12 + 'px';
-				aSpan[i].style.left=0+ 'px';
-				aSpan[i].style.opacity = 1 ;
-			}
+                d = getDis(aSpan[i]);
+                d = Math.min(d,iMax);
+                if(d < min ) {
+                    min = d;
+                    mspan = aSpan[i];
+                }
+                console.log(d);
+                aSpan[i].className = '';
+                aSpan[i].style.fontSize=((iMax-d)/iMax)*15+12 + 'px';
+                aSpan[i].style.left=-Math.round(((iMax-d)/iMax)*70 )+ 'px';
+                
+                if(aSpan[i].style.left == 0+'px'){
+                    aSpan[i].style.opacity = 1 ;
+                }
+                else{
+                    aSpan[i].style.opacity = (iMax-d-0.5)/iMax*1 +0.2 ;
+                }
+                
+            }
+            if(mspan.style.fontSize != '12px') {
+                mspan.className = "active";
+            }
 
-		});
 
+        });
+        // ontouchstart end 
 
-	}
-	letterMove();
+        var move = 'ontouchmove' in document ? 'touchmove' : 'mousemove' ;
+        addHandler(document,move,function(e){
+            
+            var ev = 'ontouchmove' in document ? e.touches[0] : e ;
+            var x = ev.pageX ;
+            var y = ev.pageY ;
+            function getDis(obj){
+                return Math.sqrt
+                (
+                    Math.pow(obj.offsetLeft+oLetter.offsetLeft-x+obj.offsetWidth/2, 2)+
+                    Math.pow(obj.offsetTop+oLetter.offsetTop-y+obj.offsetHeight/2, 2)
+                );
+            }
+
+            var min = 100, mspan = aSpan[0];
+            for(i = 0;i<aSpan.length;i++){
+                d = getDis(aSpan[i]);
+                d = Math.min(d,iMax);
+                if(d < min ) {
+                    min = d;
+                    mspan = aSpan[i];
+                }
+                aSpan[i].className = '';
+                aSpan[i].style.fontSize=((iMax-d)/iMax)*15+12 + 'px';
+                aSpan[i].style.left=-Math.round(((iMax-d)/iMax)*70 )+ 'px';
+                
+                if(aSpan[i].style.left == 0+'px'){
+                    aSpan[i].style.opacity = 1 ;
+                }
+                else{
+                    aSpan[i].style.opacity = (iMax-d-0.5)/iMax*1 +0.2 ;
+                }
+            }
+            if(mspan.style.fontSize != '12px') {
+                mspan.className = "active";
+            }
+        });
+        
+        var end = 'ontouchend' in document ? 'touchend' : 'mouseleave' ;   
+
+        addHandler(document,end,function(e){
+            //解绑事件
+            var ev = 'ontouchend' in document ? e.touches[0] : e ;
+            this.removeEventListener('touchend',this,false);
+            for(i = 0;i<aSpan.length;i++){
+                aSpan[i].className = '';
+                aSpan[i].style.fontSize= 12 + 'px';
+                aSpan[i].style.left= 0;
+                aSpan[i].style.opacity = 1 ;
+            }
+        });
+
+    }
+    letterMove();
 }
 </script>
 </body>
