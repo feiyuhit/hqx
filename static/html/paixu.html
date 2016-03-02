@@ -1,49 +1,154 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-<title>Examples</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<style type="text/css">
-html,body{ height: 100%; width: 100%; overflow: hidden;}
-body{background-color: #fff; font-family: '微软雅黑'}
-	*{margin: 0;padding: 0}
-	#letter{position: fixed;right: 0px;top: 20px;width: 20px;height: auto; background-color: #fff;}
-	#letter div{ display: block; width: 20px; padding:2px 0;text-align: center;line-height: 22px; font-size: .75em; position: relative; color: #333; font-size: 12px;left: 0;}
-	#letter div.active{
-		font-weight: bolder;
-		font-size: 32px!important;
-		margin: -12px 0;
-	}
-</style>
+<meta name="apple-mobile-web-app-title" content="瓜子二手车直卖网">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no"/>
+<title>瓜子拍个人中心</title>
+<link rel="stylesheet" href="../../../../css/global.css">
+<link rel="stylesheet" href="../../../../css/mobile/guazi_auction/list.css">
+<link rel="stylesheet" href="../../../../css/mobile/guazi_auction/index_header.css">
+<link rel="stylesheet" href="../../../../css/mobile/guazi_auction/search.css">
+<link rel="stylesheet" href="../../../../css/mobile/guazi_auction/nav.css">
+<link rel="stylesheet" href="../../../../css/mobile/guazi_auction/filter.css">
 </head>
 <body>
-<div class="filter-index">
-	<div class="letter" id="letter">
-    	<div class="index-item">A</div>
-        <div class="index-item">B</div>
-        <div class="index-item">C</div>
-        <div class="index-item">D</div>
-        <div class="index-item">F</div>
-        <div class="index-item">G</div>
-        <div class="index-item">J</div>
-        <div class="index-item">K</div>
-        <div class="index-item">L</div>
-        <div class="index-item">M</div>
-        <div class="index-item">N</div>
-        <div class="index-item">Q</div>
-        <div class="index-item">R</div>
-        <div class="index-item">S</div>
-        <div class="index-item">W</div>
-        <div class="index-item">X</div>
-        <div class="index-item">Y</div>
-    </div>
+    <header class="index-header">
+        <div class="logo fl"></div>
+        <div class="search-enter"><a href="#" class="index-search">搜索</a></div>
+        <div class="city fr"><a href="#" class="city-btn">北京</a></div>
+    </header>
 
-</div>
+    <nav class="form-nav">
+        <ul class="mod-list">
+            <li class="list-item active">
+                <a href="javascript:;">按品牌查找<i class="icon-tri"></i></a>
+            </li>
+            <li class="list-item">
+                <a href="javascript:;">其他筛选条件<i class="icon-tri"></i></a>
+            </li>
+            <li class="list-item rank">
+                <!-- i + selected 改变颜色 -->
+                <a href="javascript:;">价格
+                    <i class="down selected"></i>
+                    <i class="up "></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="filter">
+        <div class="filter-type active">
+            <div class="brand-widget">
+                <div class="filter-wrap">
+                    <div class="filter-subtitle">不限品牌</div>
+                    <ul class="list row-four type-brand js-brand-list">
+                        <li class="list-item js-ajax"><a href="javascript:void(0);"><i class="icon icon-kia"></i>起亚</a></li>
+                        <li class="list-item js-ajax"><a href="javascript:void(0);"><i class="icon icon-dazhong"></i>大众</a></li>
+                        <li class="list-i   tem js-ajax"><a href="javascript:void(0);"><i class="icon icon-audi"></i>奥迪</a></li>
+                        <li class="list-item js-ajax"><a href="javascript:void(0);"><i class="icon icon-bmw"></i>宝马</a></li>
+                        <li class="list-item js-ajax"><a href="javascript:void(0);"><i class="icon icon-kia"></i>起亚</a></li>
+                        <li class="list-item js-ajax"><a href="javascript:void(0);"><i class="icon icon-dazhong"></i>大众</a></li>
+                        <li class="list-item js-ajax"><a href="javascript:void(0);"><i class="icon icon-audi"></i>奥迪</a></li>
+                        <li class="list-item js-ajax"><a href="javascript:void(0);"><i class="icon icon-bmw"></i>宝马</a></li>
+                    </ul>
+
+                    <!-- 侧滑 弹层-->
+                    <div class="filter-type filter-group ">
+                        <div class="js-scroll-container">
+                            <div class="filter-cont">
+                                <ul class="list js-ajax-list" data-url-key="url">
+                                    <li class="list-item js-ajax-value" data-url-value="toyota"><a href="javascript:void(0);">不限</a></li>
+                                    <li class="list-item js-ajax-value" data-url-value="hongshan"><a href="javascript:void(0);">红杉</a></li>
+                                    <li class="list-item js-ajax-value" data-url-value="toyota-markx"><a href="javascript:void(0);">锐志</a></li>
+                                    <li class="list-item js-ajax-value" data-url-value="toyota-huangguan"><a href="javascript:void(0);">皇冠</a></li>
+                                    <li class="list-item js-ajax-value" data-url-value="huaguan"><a href="javascript:void(0);">花冠</a></li>
+                                    <li class="list-item js-ajax-value" data-url-value="hanlanda"><a href="javascript:void(0);">汉兰达</a></li><li class="list-item js-ajax-value" data-url-value="kaimeirui"><a href="javascript:void(0);">凯美瑞</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /侧滑 弹层-->
+
+                    <div class="filter-subtitle">A</div>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;" class="">奥迪</a></li>
+                    </ul>
+                    <ul class="list row-two" >
+                        <li class="list-item">
+                            <a href="javascript:void(0);">不限</a>
+                        </li>
+                        <li class="list-item js-ajax-value">
+                            <a href="javascript:void(0);">A7</a>
+                        </li>
+                        <li class="list-item js-ajax-value">
+                            <a href="javascript:void(0);">A6</a>
+                        </li>
+                    </ul>
+
+                    <div class="filter-subtitle">B</div>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;">宝马</a></li>
+                    </ul>
+                    <ul class="list row-two" >
+                        <li class="list-item">
+                            <a href="javascript:void(0);">不限</a>
+                        </li>
+                        <li class="list-item js-ajax-value">
+                            <a href="javascript:void(0);">458 Italia</a>
+                        </li>
+                        <li class="list-item js-ajax-value">
+                            <a href="javascript:void(0);">458 Italia</a>
+                        </li>
+                    </ul>
+                    <div class="filter-subtitle">C</div>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;">奔驰</a></li>
+                    </ul>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;">奔驰</a></li>
+                    </ul>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;">奔驰</a></li>
+                    </ul>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;">奔驰</a></li>
+                    </ul>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;">奔驰</a></li>
+                    </ul>
+                    <ul class="list row-one">
+                        <li class="list-item"><a href="javascript:;">奔驰</a></li>
+                    </ul>
+                </div>
+                <div class="filter-index">
+                    <div id="letter">
+                        <div class="index-item">A<i></i></div>
+                        <div class="index-item">B<i></i></div>
+                        <div class="index-item">C<i></i></div>
+                        <div class="index-item">D<i></i></div>
+                        <div class="index-item">F<i></i></div>
+                        <div class="index-item">G<i></i></div>
+                        <div class="index-item">J<i></i></div>
+                        <div class="index-item">K<i></i></div>
+                        <div class="index-item">L<i></i></div>
+                        <div class="index-item">M<i></i></div>
+                        <div class="index-item">N<i></i></div>
+                        <div class="index-item">Q<i></i></div>
+                        <div class="index-item">R<i></i></div>
+                        <div class="index-item">S<i></i></div>
+                        <div class="index-item">W<i></i></div>
+                        <div class="index-item">X<i></i></div>
+                        <div class="index-item">Y<i></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 <script>
 window.onload=function(){
     function letterMove(){
@@ -56,83 +161,45 @@ window.onload=function(){
                 element["on" + type] = handler;
             }
         }
-
         var oLetter = document.getElementById('letter');
         var aSpan = oLetter.getElementsByTagName('div');
         var d = 0;
         var iMax=100;
         var i = 0;
 
-
-
-        // ontouchstart
-        var starts = 'ontouchstart' in document ? 'touchstart' : 'click' ;
-        addHandler(document,starts,function(e){
-            var ev = 'ontouchstart' in document ? e.touches[0] : e ;
-            var x = ev.pageX ;
-            var y = ev.pageY ;
-            function getDis(obj){
-                return Math.sqrt
-                (
-                    Math.pow(obj.offsetLeft+oLetter.offsetLeft-x+obj.offsetWidth/2, 2)+
-                    Math.pow(obj.offsetTop+oLetter.offsetTop-y+obj.offsetHeight/2, 2)
-                );
-            }
-
-            var min = 100, mspan = aSpan[0];
-            for(i = 0;i<aSpan.length;i++){
-                d = getDis(aSpan[i]);
-                d = Math.min(d,iMax);
-                if(d < min ) {
-                    min = d;
-                    mspan = aSpan[i];
-                }
-                console.log(d);
-                aSpan[i].className = '';
-                aSpan[i].style.fontSize=((iMax-d)/iMax)*15+12 + 'px';
-                aSpan[i].style.left=-Math.round(((iMax-d)/iMax)*70 )+ 'px';
-                
-                if(aSpan[i].style.left == 0+'px'){
-                    aSpan[i].style.opacity = 1 ;
-                }
-                else{
-                    aSpan[i].style.opacity = (iMax-d-0.5)/iMax*1 +0.2 ;
-                }
-                
-            }
-            if(mspan.style.fontSize != '12px') {
-                mspan.className = "active";
-            }
-
-
-        });
-        // ontouchstart end 
-
         var move = 'ontouchmove' in document ? 'touchmove' : 'mousemove' ;
         addHandler(document,move,function(e){
-            
+            var target = e.target;
+            if (target.className === 'index-item') {
+                document.getElementsByTagName('body')[0].className = 'hidden';
+                e.preventDefault();
+            }
             var ev = 'ontouchmove' in document ? e.touches[0] : e ;
-            var x = ev.pageX ;
-            var y = ev.pageY ;
+            var x = ev.clientX-60;
+            var y = ev.clientY;
+
             function getDis(obj){
                 return Math.sqrt
                 (
                     Math.pow(obj.offsetLeft+oLetter.offsetLeft-x+obj.offsetWidth/2, 2)+
                     Math.pow(obj.offsetTop+oLetter.offsetTop-y+obj.offsetHeight/2, 2)
                 );
-            }
+            }      
+  
+            var min = 100, 
+                mspan = aSpan[0];
 
-            var min = 100, mspan = aSpan[0];
             for(i = 0;i<aSpan.length;i++){
                 d = getDis(aSpan[i]);
                 d = Math.min(d,iMax);
-                if(d < min ) {
+                if(d < min ) { 
                     min = d;
                     mspan = aSpan[i];
                 }
-                aSpan[i].className = '';
-                aSpan[i].style.fontSize=((iMax-d)/iMax)*15+12 + 'px';
-                aSpan[i].style.left=-Math.round(((iMax-d)/iMax)*70 )+ 'px';
+                aSpan[i].className = 'index-item';
+                aSpan[i].style.fontSize=parseInt(((iMax-d)/iMax)*15+12) + 'px';
+                // var leftNum =  
+                aSpan[i].style.left=parseInt(-Math.round(((iMax-d)/iMax)*85 ) )+ 'px';
                 
                 if(aSpan[i].style.left == 0+'px'){
                     aSpan[i].style.opacity = 1 ;
@@ -142,21 +209,23 @@ window.onload=function(){
                 }
             }
             if(mspan.style.fontSize != '12px') {
-                mspan.className = "active";
+                 
+                if(parseInt(mspan.style.fontSize) +2 && parseInt(mspan.style.fontSize) -2){
+                   mspan.className = "index-item active";
+                }
             }
         });
         
-        var end = 'ontouchend' in document ? 'touchend' : 'mouseleave' ;   
-
+        var end = 'ontouchend' in document ? 'touchend' : 'mouseleave' ; 
         addHandler(document,end,function(e){
-            //解绑事件
             var ev = 'ontouchend' in document ? e.touches[0] : e ;
-            this.removeEventListener('touchend',this,false);
+            this.removeEventListener('touchend',this,false);  
             for(i = 0;i<aSpan.length;i++){
-                aSpan[i].className = '';
+                aSpan[i].className = 'index-item';
                 aSpan[i].style.fontSize= 12 + 'px';
                 aSpan[i].style.left= 0;
                 aSpan[i].style.opacity = 1 ;
+                document.getElementsByTagName('body')[0].className = '';
             }
         });
 
@@ -164,5 +233,6 @@ window.onload=function(){
     letterMove();
 }
 </script>
+
 </body>
 </html>
